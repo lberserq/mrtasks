@@ -24,16 +24,16 @@ files.sort()
 def mapfn(k, v):
     
     for word in v:
-        yield word, (k, 1, len(v))
+        yield word, (k, 1)
 
 
 def reducefn(k, vs):
     x = {}
     for v in vs:
-        doc, val, l = v
+        doc, val = v
         if doc not in x:
             x[doc]=0
-        x[doc] += val / float(l)
+        x[doc] += val
     return list(set(x.items()))
     #return (k, list(set(vs)))
 
